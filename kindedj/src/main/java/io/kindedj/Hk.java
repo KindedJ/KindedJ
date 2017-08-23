@@ -16,5 +16,14 @@
 
 package io.kindedj;
 
-public interface HK<F, A> {
+/**
+ * Hk, or higher kind, represents a value that wraps another value. It would be equivalent to F&lt;A&gt; if Java supported higher kinds.
+ * <br/><br/>
+ * To construct higher kinds of arity 2+ you have to nest Hk into its witness type parameter.
+ * For example, to represent F&lt;G&lt;H&lt;A&gt;&gt;&gt; you have to create an interface or type alias HK&lt;HK&lt;HK&lt;F, G&gt;, H&gt;, A&gt;
+ *
+ * @param <F> The witness type marking the wrapper type
+ * @param <A> The value contained inside &lt;F&gt;
+ */
+public interface Hk<F, A> {
 }
