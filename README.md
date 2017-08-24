@@ -37,7 +37,7 @@ An HKT built with KindedJ follows the following guidelines:
 
 * A witness has to be co-located with its datatype and be easily discoverable. Witness types must be available publicly outside the library. In the cases where the witness is dynamically generated, like with annotation processing or compiler plugins, it's expected that the witness belongs at least to the same package or similar physical unit. Witnesses should not be inheritable or used for multiple datatypes.
 
-* By subtyping we obtain a way of transforming datatypes into higher kinds. The datatype must implement the `Hk` interface for its unique witness. That way any operation that'd require a generic HKT is capable of receiving a datatype.
+* By subtyping we obtain a way of transforming datatypes into higher kinds. A datatype must implement the `Hk` interface for its unique witness. That way any operation that'd require a generic HKT is capable of receiving a datatype.
 
 * The reverse operation from HKT to datatype cannot be completed using subtyping. An *evidence function* that allows transforming from HKT to datatype must be provided. Evidence functions have to be available publicly and globally to be accessed by any other KindedJ user.
 
