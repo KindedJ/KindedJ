@@ -13,11 +13,16 @@ A collection of shared interfaces for evidence-based Higher Kinded Types in the 
 
 ## Purpose
 
-A Higher Kinded Type represents a value that wraps another value. They can be reasoned about as type constructors, where arity represents the number of generic parameters. For example, a List can contain only one parameter, and is expressed as `List<T>`. A type that can contain either a value of type A or a value of type B has arity 2, and requires a type constructor with the same number of parameters, expressed as `Either<A, B>`. The group of type constructors with exactly one parameter is usually represented as `* -> *`, and every increment in arity adds a new * parameter. This way, `Either<A, B>` has a type constructor that belongs to the group `* -> * -> * `. Filling a generic parameter with a concrete value lowers the arity of the constructor by one *, so an `Either<Int, B>` belongs to `* -> *` and List<String> is `*`. You can read more about kinds in [Wikipedia](https://en.wikipedia.org/wiki/Kind_(type_theory)) or [StackOverflow](https://softwareengineering.stackexchange.com/a/276861/72626).
+A Higher Kinded Type represents a value that wraps another value. They can be reasoned about as type constructors, where arity represents the number of generic parameters.
+For example, a List can contain only one parameter and is expressed as `List<T>`. A type that can contain either a value of type A or a value of type B has arity 2, and requires a type constructor with the same number of parameters, expressed as `Either<A, B>`. The group of type constructors with exactly one parameter is usually represented as `* -> *`, and every increment in arity adds a new * parameter. This way, `Either<A, B>` has a type constructor that belongs to the group `* -> * -> * `.
+
+Filling a generic parameter with a concrete value lowers the arity of the constructor by one *, so an `Either<Int, B>` belongs to `* -> *` and List<String> is `*`. All arities can be represented as arity 1 by grouping them on a type function `(* -> * -> *) -> *`. This grouping is a key construct to support Higher Kinded Type emulation in the JVM.
  
-This representation of generic polymorphism for any arity allows library writers to create abstractions that work on any wrapper type in a completely generic fashion. For library design this means the equivalent of supporting parameters of type F\<A>, which would take any `* -> *`. You can see some examples of such generic functions in the projects supporting KindedJ listed above.
+This representation of generic polymorphism for any arity allows library writers to create abstractions that work on any wrapper type in a completely generic fashion. For library design this means the equivalent of supporting parameters of type `F<A>`, which would take any `* -> *`. You can see some examples of such generic functions in the projects supporting KindedJ listed above.
 
 The objective of KindedJ is to provide a common set of interfaces that enable cross-library and cross-language support for all opensource maintainers using evidence-based higher kind emulation in the JVM.
+
+You can read more about kinds in [Wikipedia](https://en.wikipedia.org/wiki/Kind_(type_theory)) or [StackOverflow](https://softwareengineering.stackexchange.com/a/276861/72626).
 
 ## Usage
 
