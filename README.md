@@ -52,9 +52,9 @@ Add as a dependency to your `build.gradle`
 
 ```groovy
 dependencies {
-    ...
+
     compile 'io.kindedj:KindedJ:1.0.0'
-    ...
+
 }
 ```
 or to your `pom.xml`
