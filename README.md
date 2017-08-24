@@ -5,8 +5,9 @@ A collection of shared interfaces for evidence-based Higher Kinded Types in the 
 
 ## Projects that support KindedJ
 
-#### Legend 
 Name & Organisation - Language - Supported since version
+
+#### List
 
 *Add yourself here by [sending a Pull Request](https://github.com/KindedJ/KindedJ/compare)*
 
@@ -65,7 +66,7 @@ public static <A> Hk3<F, G, H, A> myFunction(Hk2<F, G, H> partialHk) {
 }
 ```
 
-### Distribution
+## Distribution
 
 Add as a dependency to your `build.gradle`
 
@@ -86,7 +87,7 @@ or to your `pom.xml`
 </dependency>
 ```
 
-### License
+## License
 
 Copyright (c) KindedJ 2017
 
