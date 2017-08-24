@@ -25,9 +25,9 @@ Evidence-based Higher Kinded Types (HKTs) is a way of emulating HKTs even withou
 
 A *datatype* is any class who we want to make into an HKT. Examples include List, Future, Optional, Stream, Observable... To consider a class a datatype it has to implement the interface `Hk<F, A>`, or provide a wrapper class that does. In this interface, the generic parameter `F` is considered the *witness* and the generic parameter `A` the *value*.
 
-A *witness* type is an empty type without constructors. This type is unique globally and exclusively used to identify a single datatype when used as a generic parameter.
+A *witness* type is an empty type without constructors. This type is unique globally and exclusively used to identify a single datatype when used as a generic parameter. This type has to be different than the datatype, a datatype should not be a witness of itself. Generic parameters requiring a witness are usually represented by the characters F, G, H, or datatype specific characters like L for the left side of an Either.
 
-A *value* is any data type that doesn't affect the operations on the container. For example, you would not expect a `List` of `Strings` to behave differently than a `List` of `UserDto` for operations like `size()` or `map()`.
+A *value* is any data type that doesn't affect the operations on the container. For example, you would not expect a `List` of `Strings` to behave differently than a `List` of `UserDto` for operations like `size()` or `map()`. Generic parameters requiring a value are usually represented by the characters A, B, C, D...
 
 Evidence-based HKTs allow transformation from their higher kind form into their datatype form, and viceversa, in what's called an isomorphism. This isomorphism allows transformation in both directions without information loss.
 
@@ -43,11 +43,11 @@ An HKT built with KindedJ follows the following guidelines:
 
 ### Higher Kinded Type Arities
 
-To construct HKTs of arity 2+ it is required to nest Hk into its witness type parameter. When trying to represent `F<G<H<A>>>` it is required to to create an interface or type alias in the form of `Hk<Hk<Hk<F, G>, H>, A>`.
+Generic functions and constructs that consume evidence-based HKTs are only capable of understanding kinds of arity 1. To construct HKTs of arity 2+ it is required to nest Hk into its witness type parameter. When trying to represent `F<G, H, A>` it is required to create an instance in the form of `Hk<Hk<Hk<F, G>, H>, A>`.
 
-In the opposite case, it may happen that HKTs of arity higher than one require a version with fewer arguments for some generic constructs. These cases are solved by creating a new interface or typealias of that arity. 
+In the opposite case, it may happen that HKTs of arity higher than 1 require a version with fewer arguments for some generic constructs. These cases are solved by creating a new interface or typealias of that arity. 
 
-One snippet example containing both cases, where `F<G<H<A>>>` is constructed in a function where `A` is injected on a per value basis:
+One snippet example containing both cases, where `F<G, H, A>` is constructed in a function where `A` is injected on a per value basis:
 
 ```java
 public static <A> Hk<Hk<Hk<F, G>, H>, A> myFunction(Hk<Hk<F, G>, H> partialHk) {
@@ -55,16 +55,7 @@ public static <A> Hk<Hk<Hk<F, G>, H>, A> myFunction(Hk<Hk<F, G>, H> partialHk) {
 }
 ```
 
-It is not uncommon to create inheritance schemes or typealiases to represent HKTs of different arities. This allows avoiding generic type erasure in Java, and improves readability, all at the expense of dealing with up/downcasting troubles.
-
-```java
-// Hk2<A, B, C, D> = Hk<Hk<A, B>, C>
-// Hk3<A, B, C, D> = Hk<Hk<Hk<A, B>, C>, D>
-
-public static <A> Hk3<F, G, H, A> myFunction(Hk2<F, G, H> partialHk) {
-    /* ... */
-}
-```
+It is not uncommon to create inheritance schemes or typealiases to represent HKTs of different arities. This allows avoiding conflicting function signatures due to generic type erasure in Java and improves readability, all at the expense of dealing with up/downcasting troubles.
 
 ## Distribution
 
