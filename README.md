@@ -57,8 +57,8 @@ public static <A> Hk<Hk<Hk<F, G>, H>, A> myFunction(Hk<Hk<F, G>, H> partialHk) {
 It is not uncommon to create inheritance schemes or typealiases to represent HKTs of different arities. This makes for improved readability at the expense of dealing with up/downcasting troubles.
 
 ```java
-// HK2<A, B, C, D> = Hk<Hk<A, B>, C>
-// HK3<A, B, C, D> = Hk<Hk<Hk<A, B>, C>, D>
+// Hk2<A, B, C, D> = Hk<Hk<A, B>, C>
+// Hk3<A, B, C, D> = Hk<Hk<Hk<A, B>, C>, D>
 
 public static <A> Hk3<F, G, H, A> myFunction(HK2<F, G, H> partialHk) {
     /* ... */
