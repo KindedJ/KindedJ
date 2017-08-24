@@ -60,7 +60,7 @@ It is not uncommon to create inheritance schemes or typealiases to represent HKT
 // Hk2<A, B, C, D> = Hk<Hk<A, B>, C>
 // Hk3<A, B, C, D> = Hk<Hk<Hk<A, B>, C>, D>
 
-public static <A> Hk3<F, G, H, A> myFunction(HK2<F, G, H> partialHk) {
+public static <A> Hk3<F, G, H, A> myFunction(Hk2<F, G, H> partialHk) {
     /* ... */
 }
 ```
