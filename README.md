@@ -47,11 +47,13 @@ Generic functions and constructs that consume evidence-based HKTs are only capab
 
 In the opposite case, it may happen that HKTs of arity higher than 1 require a version with fewer arguments for some generic constructs. These cases are solved by creating a new interface or typealias of that arity. 
 
-One snippet example containing both cases, where `F<G, H, A>` is constructed in a function where `A` is injected on a per value basis:
+One snippet example containing both cases, where `F<G, H, A>` is constructed in a function where values `A` and `B` are injected on a per call basis:
 
 ```java
-public static <A> Hk<Hk<Hk<F, G>, H>, A> myFunction(Hk<Hk<F, G>, H> partialHk) {
-    /* ... */
+public class ExampleMonad<F, G, H> implements Monad<Hk<Hk<F, G>, H>> {
+    public static <A, B> Hk<Hk<Hk<F, G>, H>, B> flatMap(Function<A, Hk<Hk<Hk<F, G>, H>, B>> partialHk) {
+        /* ... */
+    }
 }
 ```
 
