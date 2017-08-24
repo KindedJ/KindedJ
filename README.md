@@ -9,7 +9,7 @@ A collection of shared interfaces for evidence-based Higher Kinded Types in the 
 
 | | Name & Organisation | Language | Since version |
 |:---:| --- |:---:| ---:|
-![](https://avatars2.githubusercontent.com/u/29458023?v=4&s=50)|[Kategory](https://github.com/kategory/kategory)|Kotlin|0.3.6|
+<img src="https://raw.githubusercontent.com/kategory/kategory-art/master/kategory-brand-light.svg" width="48">|[Kategory](https://github.com/kategory/kategory)|Kotlin|0.3.6|
 
 ## Purpose
 
