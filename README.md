@@ -51,7 +51,7 @@ One snippet example containing both cases, where `F<G, H, A>` is constructed in 
 
 ```java
 public class ExampleMonad<F, G, H> implements Monad<Hk<Hk<F, G>, H>> {
-    public static <A, B> Hk<Hk<Hk<F, G>, H>, B> flatMap(Function<A, Hk<Hk<Hk<F, G>, H>, B>> partialHk) {
+    public <A, B> Hk<Hk<Hk<F, G>, H>, B> flatMap(Function<A, Hk<Hk<Hk<F, G>, H>, B>> partialHk) {
         /* ... */
     }
 }
