@@ -7,9 +7,9 @@ A collection of shared interfaces for evidence-based Higher Kinded Types in the 
 
 *Add yourself here by [sending a Pull Request](https://github.com/KindedJ/KindedJ/compare)*
 
-| | Name & Organisation | Language | Since version |
-|:---:| --- |:---:| ---:|
-<img src="https://raw.githubusercontent.com/kategory/kategory-art/master/kategory-brand-light.png" width="48">|[Kategory](https://github.com/kategory/kategory)|Kotlin|0.3.6|
+| | Name & Organisation | Language | Since version | Description |
+|:---:| --- |:---:| ---:| --- |
+<img src="https://raw.githubusercontent.com/kategory/kategory-art/master/kategory-brand-light.svg" width="48" height="48" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/kategory/kategory-art/master/kategory-brand-light.png'">|[Kategory](https://github.com/kategory/kategory)|Kotlin|0.3.6|Functional Data Types & Abstractions for Kotlin|
 
 ## Purpose
 
