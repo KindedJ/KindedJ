@@ -55,8 +55,8 @@ In the opposite case, it may happen that HKTs of arity higher than 1 require a v
 One snippet example containing both cases, where `F<G, H, A>` is constructed in a function where values `A` and `B` are injected on a per call basis:
 
 ```java
-public class ExampleMonad<F, G, H> implements Monad<Hk<Hk<F, G>, H>> {
-    public <A, B> Hk<Hk<Hk<F, G>, H>, B> flatMap(Function<A, Hk<Hk<Hk<F, G>, H>, B>> partialHk) {
+public class ExampleMonad<G, H> implements Monad<Hk<Hk<ExampleWitness, G>, H>> {
+    public <A, B> Hk<Hk<Hk<ExampleWitness, G>, H>, B> flatMap(Function<A, Hk<Hk<Hk<ExampleWitness, G>, H>, B>> partialHk) {
         /* ... */
     }
 }
