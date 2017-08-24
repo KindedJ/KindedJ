@@ -19,7 +19,7 @@ The objective of KindedJ is to provide a common set of interfaces that enable cr
 
 ## Usage
 
-Evidence-based Higher Kinded Types (HKTs) is a way of emulating HKTs even without explicit language support. 
+Evidence-based Higher Kinded Types (HKTs) is a way of emulating HKTs even without explicit language support. It is described in the paper [Lightweight higher-kinded Polymorphism](https://www.cl.cam.ac.uk/~jdy22/papers/lightweight-higher-kinded-polymorphism.pdf) by Jeremy Yallop and Leo White.
 
 A *datatype* is any class who we want to make into an HKT. Examples include List, Future, Optional, Stream, Observable... To consider a class a datatype it has to implement the interface `Hk<F, A>`, or provide a wrapper class that does. In this interface, the generic parameter `F` is considered the *witness* and the generic parameter `A` the *value*.
 
