@@ -43,7 +43,7 @@ An HKT built with KindedJ follows the following guidelines:
 
 ### Higher Kinded Type Arities
 
-To construct HKTs of arity 2+ it is required to nest Hk into its witness type parameter. When trying to represent `F<G<H<A>>>` it is required to to create an interface or type alias in the form of `Hk<Hk<Hk<F, G>, H>, A>`
+To construct HKTs of arity 2+ it is required to nest Hk into its witness type parameter. When trying to represent `F<G<H<A>>>` it is required to to create an interface or type alias in the form of `Hk<Hk<Hk<F, G>, H>, A>`.
 
 In the opposite case, it may happen that HKTs of arity higher than one require a version with fewer arguments for some generic constructs. These cases are solved by creating a new interface or typealias of that arity. 
 
