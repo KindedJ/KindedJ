@@ -5,7 +5,7 @@ A collection of shared interfaces for evidence-based Higher Kinded Types in the 
 
 ## Projects that support KindedJ
 
-*Add yourself here by [sending a Pull Request](https://github.com/KindedJ/KindedJ/compare)*
+*Add yourself here alphabetically by [sending a Pull Request](https://github.com/KindedJ/KindedJ/compare)*
 
 | | Name & Organisation | Language | Since version | Description |
 |:---:| --- |:---:| ---:| --- |
