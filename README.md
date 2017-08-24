@@ -34,17 +34,36 @@ Evidence-based HKTs allow transformation from their higher kind form into their 
 
 An HKT built with KindedJ follows the following guidelines:
 
-* A witness has to be co-located with its datatype and be easily discoverable. Witness types must be available publicly outside the library. In the cases of code generation it's expected that the witness belongs at least to the same package or similar physical unit. Witnesses should not be inheritable or used for multiple datatypes.
+* A witness has to be co-located with its datatype and be easily discoverable. Witness types must be available publicly outside the library. In the cases where the witness is dynamically generated, like with annotation processing or compiler plugins, it's expected that the witness belongs at least to the same package or similar physical unit. Witnesses should not be inheritable or used for multiple datatypes.
 
 * By subtyping we obtain a way of transforming datatypes into higher kinds. The datatype must implement the `Hk` interface for its unique witness. That way any operation that'd require a generic HKT is capable of receiving a datatype.
 
 * The reverse operation from HKT to datatype cannot be completed using subtyping. An *evidence function* that allows transforming from HKT to datatype must be provided. Evidence functions have to be available publicly and globally to be accessed by any other KindedJ user.
 
-### Higher arities
+### Higher Kinded Type Arities
 
-To construct HKTs of arity 2+ it is required to nest Hk into its witness type parameter.
+To construct HKTs of arity 2+ it is required to nest Hk into its witness type parameter. When trying to represent F<G<H\<A>>> it is required to to create an interface or type alias in the form of Hk<Hk<Hk<F, G>, H>, A>
 
-For example, to represent F<G<H\<A>>> you have to create an interface or type alias in the form of Hk<Hk<Hk<F, G>, H>, A>
+In the opposite case, it may happen that HKTs of arity higher than one require a version with fewer arguments for some generic constructs. These cases are solved by creating a new interface or typealias of that arity. 
+
+One snippet example containing both cases, where F<G<H\<A>>> is constructed in a function where A is injected on a per value basis:
+
+```java
+public static <A> Hk<Hk<Hk<F, G>, H>, A> myFunction(Hk<Hk<F, G>, H> partialHk) {
+    /* ... */
+}
+```
+
+It is not uncommon to create inheritance schemes or typealiases to represent HKTs of different arities. This makes for improved readability at the expense of dealing with up/downcasting troubles.
+
+```java
+// HK2<A, B, C, D> = Hk<Hk<A, B>, C>
+// HK3<A, B, C, D> = Hk<Hk<Hk<A, B>, C>, D>
+
+public static <A> Hk3<F, G, H, A> myFunction(HK2<F, G, H> partialHk) {
+    /* ... */
+}
+```
 
 ### Distribution
 
