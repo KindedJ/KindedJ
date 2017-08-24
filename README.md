@@ -9,9 +9,7 @@ A collection of shared interfaces for evidence-based Higher Kinded Types in the 
 
 | | Name & Organisation | Language | Since version |
 |:---:| --- |:---:| ---:|
-![](https://avatars2.githubusercontent.com/u/29458023?v=4&s=50)|Kategory|Kotlin|0.3.6|
-
-[Kategory](https://github.com/kategory/kategory) - Kotlin - 0.3.6
+![](https://avatars2.githubusercontent.com/u/29458023?v=4&s=50)|[Kategory](https://github.com/kategory/kategory)|Kotlin|0.3.6|
 
 ## Purpose
 
