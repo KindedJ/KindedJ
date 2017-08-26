@@ -15,14 +15,19 @@ A collection of shared interfaces for evidence-based Higher Kinded Types in the 
 
 The objective of KindedJ is to provide a common set of interfaces that enable cross-library and cross-language support for all projects using evidence-based Higher Kinded Types emulation in the JVM.
 
-A Higher Kinded Type represents a value that wraps another value. They can be reasoned about as type constructors, where arity represents the number of generic parameters.
-For example, a List can contain only one parameter and is expressed as `List<T>`. A type that can contain either a value of type A or a value of type B has arity 2, and requires a type constructor with the same number of parameters, expressed as `Either<A, B>`. The group of type constructors with exactly one parameter is usually represented as `* -> *`, and every increment in arity adds a new * parameter. This way, `Either<A, B>` has a type constructor that belongs to the group `* -> * -> * `.
+## Rationale
 
-Filling a generic parameter with a concrete value lowers the arity of the constructor by one *, so an `Either<Int, B>` belongs to `* -> *` and List<String> is `*`. All arities can be represented as arity 1 by grouping them on what's called a type function `(* -> * -> *) -> *`. This grouping is a key construct to support Higher Kinded Type emulation in the JVM.
+Higher Kinded Types is feature of a type system which main purpose is to allow type constructor polymorphism, that is, abstracting over type constructors.
+A type constructor is a function at the type level that take type(s) as argument(s) and returns a type as a result. The arity of a type constructor is represented by the number of generic parameters in its signature.
+We can say that List is a type constructor as it contains a type parameter: it needs 1 type argument to produce a concrete type. `List<T>`  applied with the type argument `String` in the position `T` gives you the concrete type `List<String>`. A type that can contain either a value of type A or a value of type B two type parameters, and requires a type constructor expressed as `Either<A, B>`.
+
+The group of type constructors with exactly one parameter is usually represented as `* -> *`, and every increment in arity adds a new * parameter. This way, `Either<A, B>` has a type constructor that belongs to the group `* -> * -> * `.
+
+Filling a generic parameter with a concrete value lowers the arity of the constructor by one *, so an `Either<Int, B>` belongs to `* -> *` and `List<String>` is `*`. All arities can be represented as arity 1 by grouping them on what's called a type function `(* -> * -> *) -> *`. This grouping is a key construct to support Higher Kinded Type emulation in the JVM.
  
-This representation of generic polymorphism for any arity allows library writers to create abstractions that work on any wrapper type in a completely generic fashion. For library design this means the equivalent of supporting parameters of type `F<A>`, which would take any `* -> *`.
+This representation of type parameters allows library writers to create abstractions that are generic on the type constructor. The archetype of such a method is the `map` method. `map` receives a type parameter `B` and a parameter whose type constructor has arity of at least 1 and `A` as the last type parameter. Map's return has the same type constructor as the input with `B` as its last type parameter. In the JDK a version of this method exists in `java.util.Optional`, `java.util.stream.Stream` and `java.util.concurrent.CompletableFuture`, and could be declared for many others like `java.util.Iterable`. If you want to write a reusable piece of code that can work for every type that implements `map`, without HKTs you actually need to write boilerplate code, and potential errors, for every type you wish to support. With HKTs, you only need to write it once!
 
-You can see some examples of generic functions using kinds in the projects supporting KindedJ listed above. You can read more about kind and type theory in [Wikipedia](https://en.wikipedia.org/wiki/Kind_(type_theory)) or [StackOverflow](https://softwareengineering.stackexchange.com/a/276861/72626).
+You can see some examples of reusable pieces of code using HKTs in the projects supporting KindedJ listed above. You can read more about kind and type theory in [Wikipedia](https://en.wikipedia.org/wiki/Kind_(type_theory)) or [StackOverflow](https://softwareengineering.stackexchange.com/a/276861/72626).
 
 ## Usage
 
