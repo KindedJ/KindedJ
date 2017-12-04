@@ -1,6 +1,7 @@
 # KindedJ
 A collection of shared interfaces for evidence-based Higher Kinded Types in the JVM
 
+[![Download](https://api.bintray.com/packages/kindedj/maven/kindedj/images/download.svg)](https://bintray.com/kindedj/maven/kindedj/_latestVersion)
 [![Gitter chat](https://badges.gitter.im/KindedJ/KindedJ.png)](https://gitter.im/KindedJ/Lobby)
 
 ## Projects that support KindedJ
@@ -74,18 +75,26 @@ It is not uncommon to create inheritance schemes or typealiases to represent HKT
 Add as a dependency to your `build.gradle`
 
 ```groovy
+repositories {
+    maven {
+        url  "https://dl.bintray.com/kindedj/maven" 
+    }
+}
 dependencies {
-
-    compile 'io.kindedj:KindedJ:1.0.0'
-
+    compile 'io.kindedj:kindedj:1.0.0'
 }
 ```
 or to your `pom.xml`
 
 ```xml
+<repository>
+    <id>bintray-kindedj-maven</id>
+    <name>bintray</name>
+    <url>https://dl.bintray.com/kindedj/maven</url>
+</repository>
 <dependency>
     <groupId>io.kindedj</groupId>
-    <artifactId>KindedJ</artifactId>
+    <artifactId>kindedj</artifactId>
     <version>1.0.0</version>
 </dependency>
 ```
