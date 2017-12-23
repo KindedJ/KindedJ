@@ -18,7 +18,7 @@ package io.kindedj;
 
 /**
  * Hk, or higher kind, represents a parametrized type of a class/interface. It would be equivalent to F&lt;A&gt; if Java had support for higher kinds.
- * <br/><br/>
+ * <br><br>
  * To construct higher kinds of arity 2+ you have to nest Hk into its witness type parameter.
  * For example, to represent F&lt;G, H, A&gt; you have to implement an interface or type alias Hk&lt;Hk&lt;Hk&lt;F, G&gt;, H&gt;, A&gt;
  *

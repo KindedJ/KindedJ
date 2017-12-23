@@ -15,12 +15,6 @@
  */
 
 buildscript {
-    buildscript {
-        ext {
-            // Constants
-            gradleVersion = '3.5'
-        }
-    }
     repositories {
         jcenter()
     }
@@ -29,13 +23,79 @@ buildscript {
     }
 }
 
-subprojects { project ->
+allprojects {
+    ext {
+        baseVersion = '1.0.1'
+        isSnapshot = false
+    }
+}
 
-    group = GROUP
-    version = VERSION_NAME
+subprojects {
+
+    apply plugin: 'java-library'
+
+    sourceCompatibility = "1.8"
+    targetCompatibility = '1.7'
+
+    task javadocJar(type: Jar, dependsOn: "javadoc") {
+        classifier = 'javadoc'
+        from "build/docs/javadoc"
+    }
+
+    task sourcesJar(type: Jar) {
+        from sourceSets.main.allSource
+        classifier = 'sources'
+    }
+
+    artifacts {
+        archives jar
+        archives javadocJar
+        archives sourcesJar
+    }
+
+    apply plugin: 'maven'
+
+    group = 'io.kindedj'
+    version = baseVersion + (isSnapshot ? "-SNAPSHOT" : "")
 
     repositories {
         jcenter()
+    }
+
+    install {
+        repositories {
+            mavenInstaller {
+                pom {
+                    project {
+                        name 'KindedJ'
+                        packaging 'jar'
+                        description 'A shared interface for evidence-based Higher Kinded Types on the JVM.'
+                        url 'https://github.com/KindedJ/KindedJ'
+                        organization {
+                            name 'KindedJ Team'
+                        }
+                        scm {
+                            url 'https://github.com/KindedJ/KindedJ'
+                        }
+                        licenses {
+                            license {
+                                name 'The Apache Software License, Version 2.0'
+                                url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                                distribution 'repo'
+                            }
+                        }
+                        developers {
+                            developer {
+                                name 'Paco'
+                            }
+                            developer {
+                                name 'Jean-Baptiste Giraudeau'
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     apply plugin: 'com.jfrog.bintray'
@@ -45,8 +105,8 @@ subprojects { project ->
         configurations = ['archives']
         pkg {
             repo = 'maven'
-            name = POM_ARTIFACT_ID
-            userOrg = POM_DEVELOPER_ID
+            name = 'kindedj'
+            userOrg = 'kindedj'
         }
     }
 }
@@ -54,6 +114,7 @@ subprojects { project ->
 task wrapper(type: Wrapper) {
     distributionUrl = "https://services.gradle.org/distributions/gradle-${gradleVersion}-all.zip"
 }
+
 
 task clean(type: Delete) {
     delete rootProject.buildDir
