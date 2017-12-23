@@ -75,27 +75,17 @@ It is not uncommon to create inheritance schemes or typealiases to represent HKT
 Add as a dependency to your `build.gradle`
 
 ```groovy
-repositories {
-    maven {
-        url  "https://dl.bintray.com/kindedj/maven" 
-    }
-}
 dependencies {
-    compile 'io.kindedj:kindedj:1.0.0'
+    compile 'io.kindedj:kindedj:1.0.1'
 }
 ```
 or to your `pom.xml`
 
 ```xml
-<repository>
-    <id>bintray-kindedj-maven</id>
-    <name>bintray</name>
-    <url>https://dl.bintray.com/kindedj/maven</url>
-</repository>
 <dependency>
     <groupId>io.kindedj</groupId>
     <artifactId>kindedj</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
