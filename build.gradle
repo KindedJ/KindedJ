@@ -25,8 +25,8 @@ buildscript {
 
 allprojects {
     ext {
-        baseVersion = '1.0.1'
-        isSnapshot = false
+        baseVersion = '1.1.0'
+        isSnapshot = true
     }
 }
 

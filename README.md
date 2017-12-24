@@ -70,6 +70,43 @@ public class ExampleMonad<G, H> implements Monad<Hk<Hk<ExampleWitness, G>, H>> {
 
 It is not uncommon to create inheritance schemes or typealiases to represent HKTs of different arities. This allows avoiding conflicting function signatures due to generic type erasure in Java and improves readability, all at the expense of dealing with up/downcasting troubles.
 
+### Aliases via subtyping
+
+Library authors are not bound to use the `Hk` interface directly everywhere, they may use there own interfaces, as long as the root interface extends `io.kindedj.Hk`.
+
+Convenient support for multiple type parameters is one motivation for such aliases, eg. instead of:
+```java
+final class Tuple3<A, B, C> extends Hk<Hk<Hk<w, A>, B>, C> {
+  enum w{};
+  ...
+}
+```
+One may introduce the following aliases:
+```java
+interface Higher<F, A> extends Hk<F, A> {}
+
+interface Higher2<F, A, B> extends Higher<Higher<F, A>, B> {}
+
+interface Higher3<F, A, B, C> extends Higher2<Higher<F, A>, B, C> {}
+```
+and then have `Tuple3` extends `Higher3`:
+```java
+final class Tuple3<A, B, C> extends Higher3<w, A, B, C> {
+  enum w{};
+  ...
+}
+```
+
+However the introduction of such aliases may require a normalization step to recover the standard KindedJ encoding for the purpose of interoperability with the wider KindedJ ecosystem.
+KindedJ ship a small utility class providing those normalization methods: `io.kindedj.HCov`:
+```java
+  Higher3<w, A, B, C> t3 = ...;
+
+  Hk<Hk<Hk<w, A>, B>, C> normalizedT3 = HCov.covary3(t3)
+
+```
+
+
 ## Distribution
 
 Add as a dependency to your `build.gradle`
