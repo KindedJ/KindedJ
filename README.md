@@ -10,7 +10,7 @@ A collection of shared interfaces for evidence-based Higher Kinded Types in the 
 
 | | Name & Organisation | Language | Since version | Description |
 |:---:| --- |:---:| ---:| --- |
-<img src="https://raw.githubusercontent.com/kategory/kategory-art/master/kategory-brand-light.png" width="48">|[Kategory](https://github.com/kategory/kategory)|Kotlin|0.3.6|Functional Data Types & Abstractions for Kotlin|
+<img src="http://arrow-kt.io/img/arrow-brand.svg" width="48">|[Λrrow](https://github.com/arrow-kt/arrow)|Kotlin|0.3.6|Functional companion to Kotlin's Standard Library|
 
 ## Purpose
 
