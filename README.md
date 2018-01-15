@@ -113,7 +113,7 @@ Add as a dependency to your `build.gradle`
 
 ```groovy
 dependencies {
-    compile 'io.kindedj:kindedj:1.0.1'
+    compile 'io.kindedj:kindedj:1.1.0'
 }
 ```
 or to your `pom.xml`
@@ -122,7 +122,7 @@ or to your `pom.xml`
 <dependency>
     <groupId>io.kindedj</groupId>
     <artifactId>kindedj</artifactId>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
