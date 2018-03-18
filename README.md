@@ -11,6 +11,7 @@ A collection of shared interfaces for evidence-based Higher Kinded Types in the 
 | | Name & Organisation | Language | Since version | Description |
 |:---:| --- |:---:| ---:| --- |
 <img src="http://arrow-kt.io/img/arrow-brand.svg" width="48">|[Λrrow](https://github.com/arrow-kt/arrow)|Kotlin|0.3.6|Functional companion to Kotlin's Standard Library|
+|[Cyclops](https://github.com/aol/cyclops-react)|Java|10.0.0-M6|Functional data structures and streaming|
 
 ## Purpose
 
